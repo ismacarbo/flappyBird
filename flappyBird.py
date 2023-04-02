@@ -3,21 +3,30 @@ import random
 
 pygame.init()
 #setto gli sfondi
-decision=random.randint(0,1)
-if decision==1:
-    sfondo=pygame.image.load('immagini/sfondo.png')
-else:
-    sfondo=pygame.image.load('immagini/notte.jpg')
-player=pygame.image.load('immagini/uccello.png')
-base=pygame.image.load('immagini/base.png')
-gameOver=pygame.image.load('immagini/gameover.png')
-tuboGiu=pygame.image.load('immagini/tubo.png')
-tuboSu=pygame.transform.flip(tuboGiu,False,True)#immagine da trasformare, fli orizz, flip verticale
-FONT = pygame.font.SysFont('arial.ttf', 50)
+try:
+    decision=random.randint(0,1)
+except Exception as e:
+    raise e("There was an error at line 7 with generating a random number")
+try:
+    if decision==1:
+        sfondo=pygame.image.load('immagini/sfondo.png')
+    else:
+        sfondo=pygame.image.load('immagini/notte.jpg')
+    player=pygame.image.load('immagini/uccello.png')
+    base=pygame.image.load('immagini/base.png')
+    gameOver=pygame.image.load('immagini/gameover.png')
+    tuboGiu=pygame.image.load('immagini/tubo.png')
+    tuboSu=pygame.transform.flip(tuboGiu,False,True)#immagine da trasformare, fli orizz, flip verticale
+    FONT = pygame.font.SysFont('arial.ttf', 50)
+except Exception as e:
+    raise e("There was an error at lines 11-20 with loading the sprites")
 
-schermo=pygame.display.set_mode((288,512))
-FPS=50
-AVANZA=3
+try:
+    schermo=pygame.display.set_mode((288,512))
+    FPS=50
+    AVANZA=3
+except Exception as exc:
+    raise exc("An error occured at lines 19-21 with setting up a few settings")
 
 class tubiClass:
     def __init__(self):
